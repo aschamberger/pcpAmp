@@ -7,7 +7,7 @@
 #	1: on
 #	2: init
 
-GPIO_RELAY=14
+GPIO_RELAY=23
 GPIO_PLAYER_1=4
 GPIO_PLAYER_2=17
 GPIO_PLAYER_3=27
@@ -64,7 +64,6 @@ case $1 in
   if [ $RELAY_ON == 0 ]; then
     echo "power on relay (GPIO $GPIO_RELAY)" >$TERMINAL
     gpio_on $GPIO_RELAY
-    sleep 1.0 # 1 sec ???needed???
   fi
   echo "unmute (GPIO $NUM)" >$TERMINAL
   gpio_on $NUM
