@@ -7,11 +7,13 @@
 #	1: on
 #	2: init
 
-GPIO_RELAY=23
-GPIO_PLAYER_1=4
-GPIO_PLAYER_2=17
-GPIO_PLAYER_3=27
-GPIO_PLAYER_4=22
+GPIO_RELAY=4
+GPIOS_MUTE="18
+8
+12
+26
+20
+21"
 
 init_gpio_out() {
   ACTIVE_LOW=${2:-0}
@@ -73,11 +75,7 @@ case $1 in
   echo "mute (GPIO $NUM)" >$TERMINAL
   gpio_off $NUM
   ALL_MUTE=1
-  GPIOS="$GPIO_PLAYER_1
-  $GPIO_PLAYER_2
-  $GPIO_PLAYER_3
-  $GPIO_PLAYER_4"
-  for ID in $GPIOS
+  for ID in $GPIOS_MUTE
   do
     if [ ! -d "/sys/class/gpio/gpio$NUM/" ]; then
       GPIO_ON=$(sudo sh -c "cat /sys/class/gpio/gpio$ID/value")
